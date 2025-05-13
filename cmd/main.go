@@ -80,8 +80,8 @@ var command = &cobra.Command{
 
 		router.Use(func(c *gin.Context) {
 			c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-			c.Writer.Header().Set("Access-Control-Allow-Method", "GET, POST, PUT, PATCH, DELETE")
-			c.Writer.Header().Set("Acess-Control-Allow-Headers", "Content-Type, Authorization, x-service-name, x-api-key, x-request-at")
+			c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE")
+			c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, x-service-name, x-api-key, x-request-at")
 			if c.Request.Method == "OPTIONS" {
 				c.AbortWithStatus(204)
 				return
