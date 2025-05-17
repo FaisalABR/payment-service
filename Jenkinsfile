@@ -9,7 +9,6 @@ pipeline {
     HOST = credentials('host')
     USERNAME = credentials('username')
     CONSUL_HTTP_URL = credentials('consul-http-url')
-    CONSUL_HTTP_KEY = 'backend/payment-service'
     CONSUL_HTTP_TOKEN = credentials('consul-http-token')
     CONSUL_WATCH_INTERVAL_SECONDS = 60
   }
@@ -120,7 +119,7 @@ pipeline {
     stage('Deploy to Remote Server') {
       steps {
         script {
-          def targetDir = "home/faisal/belajar-web/golang/soccer-microservices/payment-service" // diganti dengan direktori tempat menyimpan kode di server
+          def targetDir = "/home/faisalabubakar92/soccer-microservices/payment-service"
           def sshCommandToServer = """
           ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${USERNAME}@${HOST} '
             if [ -d "${targetDir}/.git" ]; then
@@ -129,7 +128,7 @@ pipeline {
                 git pull origin "${TARGET_BRANCH}"
             else
                 echo "Directory does not exist. Cloning repository."
-                git clone -b "${TARGET_BRANCH}" git@github.com:FaisalABR/payment-service.git "${targetDir}" // diganti dengan URL repository Git (komentar ini nanti dihapus)
+                git clone -b "${TARGET_BRANCH}" git@github.com:FaisalABR/payment-service.git "${targetDir}"
                 cd "${targetDir}"
             fi
 
